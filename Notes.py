@@ -80,3 +80,67 @@ def grade_calc(percentage):
     elif percentage >= 50:
         return "F"
     
+
+'''Write a function called "happy bday"
+that "sings" (prints) Happy birthday
+
+It must take one parameter called "name"
+'''
+
+def happy_bday(name):
+    print("Happy birthday to you")
+    print("Happy birthday to you")
+    print("Happy birthday to %s" % name)
+    print("Happy birthday to you")
+
+happy_bday("marcos")
+
+
+# Loops
+
+for num in range(10000):
+    print(num + 1)
+
+# DO NOT RUN!!!
+a=1
+while a <= 10:
+    print(a)
+    a += 1
+
+
+# Random Numbers
+import random  # This should be on line 1
+print(random.randint(0, 100))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
