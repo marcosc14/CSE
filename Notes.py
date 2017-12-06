@@ -136,7 +136,7 @@ print(c== str(1))   #Both are strings
 #5) Add 5 guess
 
 import random
-print(random.randint(0, 100))
+print(random.randint(0, 50))
 
 
 
