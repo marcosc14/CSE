@@ -5,7 +5,7 @@ print(random.randint(1, 50))
 
 print("Hi Welcome")
 guess = input("try to guess a number between 1 and 50")
-
+for x in range():
 
 
 

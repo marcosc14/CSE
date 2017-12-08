@@ -16,14 +16,17 @@ def reverse_order():
 #add(90, 900, 9000)
 
 
-def repeat(string):
-    print(string)
-    print(string)
-    print(string)
+#def repeat(string):
+ #   print(string)
+  #  print(string)
+ #   print(string)
 
-    for x in range(3):
-        print(string)
+  #  for x in range(3):
+   #     print(string)
 
+
+def date(month, day, year):
+    print(str(month) + "/" + str(day) + "/" + str(year))
 
 
 
