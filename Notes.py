@@ -138,7 +138,7 @@ print(c== str(1))   #Both are strings
 import random
 print(random.randint(0, 50))
 
-
+#generate 2 random num between 1 and 6 print it on seprete lines then print it.
 
 
 
