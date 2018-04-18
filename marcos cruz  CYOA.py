@@ -280,7 +280,8 @@ class Character(object):
 
 
 Marcos = Character("good", True, "Marcos", 10, 3, None)
-Messi = Character("good", True, "Messi", 10, 3, None)
+Messi = Character("good", True, "Me"
+                                "ssi", 10, 3, None)
 Pele = Character("good", True, "Pele", 10, 3, None)
 Neymar = Character("good", True, "Neymar", 10, 3, None)
 Suarez = Character("good", True, "Suarez", 10, 3, None)
@@ -336,7 +337,7 @@ storage_room1 = Room('storage room1', 'locker_room1', None, None, None, None, No
 storage_room2 = Room('storage room2', 'cellar2', None, 'locker room2', None, None, None,
                      'You are now in the send storage room')
 current_node = field
-directions = ['north', 'south', 'east', 'west']
+directions = ['north', 'south', 'east', 'w+est']
 short_directions = ['n', 's', 'e', 'w']
 
 while True:
