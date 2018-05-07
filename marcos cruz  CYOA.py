@@ -337,16 +337,17 @@ storage_room1 = Room('storage room1', 'locker_room1', None, None, None, None, No
 storage_room2 = Room('storage room2', 'cellar2', None, 'locker room2', None, None, None,
                      'You are now in the send storage room')
 current_node = field
-directions = ['north', 'south', 'east', 'w+est']
+directions = ['north', 'south', 'east', 'west']
 short_directions = ['n', 's', 'e', 'w']
 
 while True:
     print(current_node.name)
     print(current_node.description)
-    command = input('>_'). lower()
+    command = input('>_') .lower()
     if command == 'quit':
         quit(0)
     elif command in short_directions:
+
         pos = short_directions.index(command)
         command = directions[pos]
     if command in directions:
