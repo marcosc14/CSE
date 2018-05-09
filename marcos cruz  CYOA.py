@@ -279,18 +279,8 @@ class Character(object):
         print("kick")
 
 
-Marcos = Character("good", True, "Marcos", 10, 3, None)
-Messi = Character("good", True, "Me"
-                                "ssi", 10, 3, None)
-Pele = Character("good", True, "Pele", 10, 3, None)
-Neymar = Character("good", True, "Neymar", 10, 3, None)
-Suarez = Character("good", True, "Suarez", 10, 3, None)
-Ronaldo = Character("good", True, "Ronaldo", 10, 3, None)
-
-
 class Room(object):
-
-    def __init__(self, name, north, east, south, west, up, down, description):
+    def __init__(self, name, north, east, south, west, up, down, description, characters):
         self.name = name
         self.north = north
         self.east = east
@@ -299,45 +289,55 @@ class Room(object):
         self.up = up
         self.down = down
         self.description = description
+        self.characters = characters
 
     def move(self, direction):
         global current_node 
         current_node = globals()[getattr(self, direction)]
 
+# Characters
+
+
+Edgar = Character("good", True, "Edgar", 10, 3, None)
+Messi = Character("good", True, "Messi", 10, 3, None)
+Pele = Character("good", True, "Pele", 10, 3, None)
+Neymar = Character("good", True, "Neymar", 10, 3, None)
+Suarez = Character("good", True, "Suarez", 10, 3, None)
+Ronaldo = Character("good", True, "Ronaldo", 10, 3, None)
 
 # Initialize Rooms
 field = Room('field', 'north_stadium', 'east_stadium', 'south_stadium', 'west_stadium', None, None,
-             'You are in the center of the field.')
+             'You are in the center of the field.', None )
 west_stadium = Room('West of Stadium', 'secret_room', 'field', None, None, None, None,
-                    'You are now west of stadium')
+                    'You are now west of stadium', None)
 north_stadium = Room('north of stadium', None, None, 'field', None, 'announcers_room', None,
-                     'You are now north of stadium')
+                     'You are now north of stadium', [Messi])
 south_stadium = Room('south of stadium', 'field', None, 'secret _room', None, None, None,
-                     'You are now south of stadium')
+                     'You are now south of stadium', None)
 east_stadium = Room('east of stadium', None, None, 'field', 'secret_room', None, None,
-                    'You are now east of stadium')
+                    'You are now east of stadium', None)
 announcers_room = Room('announcers room', None, None, 'field', None, 'north_stadium', None,
-                       'You are now in the announcers room')
+                       'You are now in the announcers room', [Edgar])
 secret_room1 = Room('secret room', 'south_stadium', None, None, None, None, None,
-                    'You are now in the secret room')
+                    'You are now in the secret room', [Pele])
 secret_room2 = Room('secret room', 'east_stadium', None, None, None, None, None,
-                    'You are in the second secret room')
+                    'You are in the second secret room', [Neymar])
 secret_room3 = Room('secret room', None, None, 'west_stadium', None, None, None,
-                    'You are now in the third secret room')
+                    'You are now in the third secret room', [Ronaldo])
 locker_room1 = Room('locker room', 'storage_room', None, None, None, None, None,
-                    'You are now in the locker rooms')
+                    'You are now in the locker rooms', None)
 locker_room2 = Room('locker room', 'cellar', None, 'storage_room', None, None, None,
-                    'You are now in the second locker room')
+                    'You are now in the second locker room', None)
 cellar1 = Room('cellar1', None, None, 'locker_room1', None, None, None,
-               'You are now in the cellar')
+               'You are now in the cellar', None)
 cellar2 = Room('cellar2', None, None, 'locker_room2', None, None, None,
-               'You are now in the second cellar')
+               'You are now in the second cellar', [Suarez])
 storage_room1 = Room('storage room1', 'locker_room1', None, None, None, None, None,
-                     'You are now in the storage room')
+                     'You are now in the storage room', None)
 storage_room2 = Room('storage room2', 'cellar2', None, 'locker room2', None, None, None,
-                     'You are now in the send storage room')
+                     'You are now in the send storage room', None)
 current_node = field
-directions = ['north', 'south', 'east', 'w+est']
+directions = ['north', 'south', 'east', 'west']
 short_directions = ['n', 's', 'e', 'w']
 
 while True:
