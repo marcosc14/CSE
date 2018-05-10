@@ -27,18 +27,20 @@ class Tool(Item):
 
 
 class Hammer(Tool):
-    def __init__(self, name, metal):
+    def __init__(self, name, metal, description):
         super(Hammer, self).__init__(name)
         self.metal = metal
+        self.description = description
 
     def smash(self):
         print("You smash with a %s" % self.name)
 
 
 class Screw(Tool):
-    def __init__(self, name, metal):
+    def __init__(self, name, metal, description):
         super(Screw, self).__init__(name)
         self.metal = metal
+        self.description = description
 
     def screwing(self):
         print("You could %s the nail" % self.name)
@@ -53,16 +55,18 @@ class Heal(Item):
 
 
 class MedKit(Heal):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(MedKit, self).__init__(name)
+        self.description = description
 
     def carry(self):
         print("Med kit carries %s" % self.name)
 
 
 class Herbs(Heal):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(Herbs, self).__init__(name)
+        self.description = description
 
     def color(self):
         print("The herb is %s" % self.name)
@@ -91,8 +95,9 @@ class Melee(Weapon):
 
 
 class Axe(Weapon):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(Axe, self).__init__(name)
+        self.description = description
 
     def damage(self):
         print("My %s does a lot of damage" % self.name)
@@ -124,8 +129,9 @@ class BodyArmor(Armor):
 
 
 class ShinGuard(Armor):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(ShinGuard, self).__init__(name)
+        self.description = description
 
     def foam(self):
         print("The foam helps the %s protect our shin from the ball" % self.name)
@@ -143,8 +149,9 @@ class Consumable(Item):
 
 
 class Salad(Consumable):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(Salad, self).__init__(name)
+        self.description = description
 
     def flavor(self):
         print("My %s has a good flavor in it" % self.name)
@@ -154,8 +161,9 @@ class Salad(Consumable):
 
 
 class Bacon(Consumable):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(Bacon, self).__init__(name)
+        self.description = description
 
     def flavor(self):
         print("The %s has a good taste to it" % self.name)
@@ -214,8 +222,9 @@ class Clothing(Item):
 
 
 class Jersey(Clothing):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(Jersey, self).__init__(name)
+        self.description = description
 
     def logo(self):
         print("The logo of my %s represents the club or country of the team" % self.name)
@@ -225,8 +234,9 @@ class Jersey(Clothing):
 
 
 class Suit(Clothing):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(Suit, self).__init__(name)
+        self.description = description
 
     def silk(self):
         print("The silk of my %s is soft" % self.name)
@@ -280,7 +290,7 @@ class Character(object):
 
 
 class Room(object):
-    def __init__(self, name, north, east, south, west, up, down, description, characters):
+    def __init__(self, name, north, east, south, west, up, down, description, characters, items):
         self.name = name
         self.north = north
         self.east = east
@@ -290,14 +300,25 @@ class Room(object):
         self.down = down
         self.description = description
         self.characters = characters
+        self.items = items
 
     def move(self, direction):
         global current_node 
         current_node = globals()[getattr(self, direction)]
+# Items
+
+
+axe = Axe('axe', 'This is a shiny axe.')
+hammer = Hammer('hammer', None, 'There is a big heavy hammer')
+screw = Screw('screw', None, 'There is a pointy screw')
+medkit = MedKit('medkit', 'Medkit gives 20+ HP')
+herbs = Herbs('herbs', 'herbs give 10+ HP')
+bodyarmor = BodyArmor('body_armor', 'bodyarmor gives you 10+ HP')
+shinguard = ShinGuard('sjinguard', 'shinguards give you 5+ HP')
+salad = Salad('salad', 'eating salads give you 2.5+ HP')
+bacon = Bacon('bacon', 'eating bacon gives you 2.5+ HP')
 
 # Characters
-
-
 Edgar = Character("good", True, "Edgar", 10, 3, None)
 Messi = Character("good", True, "Messi", 10, 3, None)
 Pele = Character("good", True, "Pele", 10, 3, None)
@@ -307,13 +328,13 @@ Ronaldo = Character("good", True, "Ronaldo", 10, 3, None)
 
 # Initialize Rooms
 field = Room('field', 'north_stadium', 'east_stadium', 'south_stadium', 'west_stadium', None, None,
-             'You are in the center of the field.', None )
+             'You are in the center of the field.', None, 'Axe')
 west_stadium = Room('West of Stadium', 'secret_room', 'field', None, None, None, None,
-                    'You are now west of stadium', None)
+                    'You are now west of stadium', None, 'jersey')
 north_stadium = Room('north of stadium', None, None, 'field', None, 'announcers_room', None,
-                     'You are now north of stadium', [Messi])
+                     'You are now north of stadium', [Messi], None)
 south_stadium = Room('south of stadium', 'field', None, 'secret _room', None, None, None,
-                     'You are now south of stadium', None)
+                     'You are now south of stadium', None, '')
 east_stadium = Room('east of stadium', None, None, 'field', 'secret_room', None, None,
                     'You are now east of stadium', None)
 announcers_room = Room('announcers room', None, None, 'field', None, 'north_stadium', None,
