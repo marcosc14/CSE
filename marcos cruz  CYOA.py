@@ -280,8 +280,7 @@ class Character(object):
 
 
 Marcos = Character("good", True, "Marcos", 10, 3, None)
-Messi = Character("good", True, "Me"
-                                "ssi", 10, 3, None)
+Messi = Character("good", True, "Messi", 10, 3, None)
 Pele = Character("good", True, "Pele", 10, 3, None)
 Neymar = Character("good", True, "Neymar", 10, 3, None)
 Suarez = Character("good", True, "Suarez", 10, 3, None)
