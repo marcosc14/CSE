@@ -118,8 +118,9 @@ class Armor(Item):
 
 
 class BodyArmor(Armor):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(BodyArmor, self).__init__(name)
+        self.description = description
 
     def metal(self):
         print("The metal on my %s is hard and could stop anything" % self.name)
@@ -181,8 +182,9 @@ class Key(Item):
 
 
 class Key1(Key):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(Key1, self).__init__(name)
+        self.description = description
 
     def aluminum(self):
         print("The aluminum of my %s is strong and it wont break when you put it in key whole" % self.name)
@@ -192,8 +194,9 @@ class Key1(Key):
 
 
 class Key2(Key):
-    def __init__(self, name):
+    def __init__(self, name, description):
         super(Key2, self).__init__(name)
+        self.description = description
 
     def aluminum(self):
         print("The aluminum of my %s is strong and it wont break when you put it in key whole" % self.name)
@@ -203,8 +206,9 @@ class Key2(Key):
 
 
 class Key3(Key):
-    def __init__(self, name):
+    def __init__(self, name,  description):
         super(Key3, self).__init__(name)
+        self.description = description
 
     def aluminum(self):
         print("The aluminum of my %s is strong and it wont break when you put it in key whole" % self.name)
@@ -288,18 +292,6 @@ class Character(object):
         self.name(item)
         print("kick")
 
-
-<<<<<<< HEAD
-Marcos = Character("good", True, "Marcos", 10, 3, None)
-Messi = Character("good", True, "Messi", 10, 3, None)
-Pele = Character("good", True, "Pele", 10, 3, None)
-Neymar = Character("good", True, "Neymar", 10, 3, None)
-Suarez = Character("good", True, "Suarez", 10, 3, None)
-Ronaldo = Character("good", True, "Ronaldo", 10, 3, None)
-
-
-=======
->>>>>>> 91eff4817d8ec0fb6f5b65a4c5e36df9323ebd63
 class Room(object):
     def __init__(self, name, north, east, south, west, up, down, description, characters, items):
         self.name = name
@@ -325,9 +317,12 @@ screw = Screw('screw', None, 'There is a pointy screw')
 medkit = MedKit('medkit', 'Medkit gives 20+ HP')
 herbs = Herbs('herbs', 'herbs give 10+ HP')
 bodyarmor = BodyArmor('body_armor', 'bodyarmor gives you 10+ HP')
-shinguard = ShinGuard('sjinguard', 'shinguards give you 5+ HP')
+shinguard = ShinGuard('shinguard', 'shinguard give you 5+ HP')
 salad = Salad('salad', 'eating salads give you 2.5+ HP')
 bacon = Bacon('bacon', 'eating bacon gives you 2.5+ HP')
+key1 = Key1('key1', 'There is key1 it opens secret door 1')
+key2 = Key2('key2', 'There is key2 it opens secret door 2')
+key3 = Key3('key3', 'There is key3 it opens secret door 3')
 
 # Characters
 Edgar = Character("good", True, "Edgar", 10, 3, None)
@@ -343,31 +338,31 @@ field = Room('field', 'north_stadium', 'east_stadium', 'south_stadium', 'west_st
 west_stadium = Room('West of Stadium', 'secret_room', 'field', None, None, None, None,
                     'You are now west of stadium', None, 'jersey')
 north_stadium = Room('north of stadium', None, None, 'field', None, 'announcers_room', None,
-                     'You are now north of stadium', [Messi], None)
+                     'You are now north of stadium', [Messi], 'bacon')
 south_stadium = Room('south of stadium', 'field', None, 'secret _room', None, None, None,
-                     'You are now south of stadium', None, '')
+                     'You are now south of stadium', None, 'shinguard')
 east_stadium = Room('east of stadium', None, None, 'field', 'secret_room', None, None,
-                    'You are now east of stadium', None)
+                    'You are now east of stadium', None, 'screw')
 announcers_room = Room('announcers room', None, None, 'field', None, 'north_stadium', None,
-                       'You are now in the announcers room', [Edgar])
+                       'You are now in the announcers room', [Edgar], 'hammer')
 secret_room1 = Room('secret room', 'south_stadium', None, None, None, None, None,
-                    'You are now in the secret room', [Pele])
+                    'You are now in the secret room', [Pele], 'salad')
 secret_room2 = Room('secret room', 'east_stadium', None, None, None, None, None,
-                    'You are in the second secret room', [Neymar])
+                    'You are in the second secret room', [Neymar], 'medkit')
 secret_room3 = Room('secret room', None, None, 'west_stadium', None, None, None,
-                    'You are now in the third secret room', [Ronaldo])
+                    'You are now in the third secret room', [Ronaldo], 'suit')
 locker_room1 = Room('locker room', 'storage_room', None, None, None, None, None,
-                    'You are now in the locker rooms', None)
+                    'You are now in the locker rooms', None, 'key1')
 locker_room2 = Room('locker room', 'cellar', None, 'storage_room', None, None, None,
-                    'You are now in the second locker room', None)
+                    'You are now in the second locker room', None, 'key2')
 cellar1 = Room('cellar1', None, None, 'locker_room1', None, None, None,
-               'You are now in the cellar', None)
+               'You are now in the cellar', None, 'key3')
 cellar2 = Room('cellar2', None, None, 'locker_room2', None, None, None,
-               'You are now in the second cellar', [Suarez])
+               'You are now in the second cellar', [Suarez], '')
 storage_room1 = Room('storage room1', 'locker_room1', None, None, None, None, None,
-                     'You are now in the storage room', None)
+                     'You are now in the storage room', None, 'herbs')
 storage_room2 = Room('storage room2', 'cellar2', None, 'locker room2', None, None, None,
-                     'You are now in the send storage room', None)
+                     'You are now in the send storage room', None, 'Body_armor')
 current_node = field
 directions = ['north', 'south', 'east', 'west']
 short_directions = ['n', 's', 'e', 'w']

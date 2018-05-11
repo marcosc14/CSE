@@ -86,7 +86,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1836">
               <caret line="108" column="18" lean-forward="true" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
-              <folding />
+              <folding>
+                <marker date="1526061841070" expanded="true" signature="3188:3673" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,8 +106,8 @@
       <file leaf-file-name="marcos cruz  CYOA.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/marcos cruz  CYOA.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="359" column="0" lean-forward="true" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
+            <state relative-caret-position="102">
+              <caret line="120" column="40" lean-forward="false" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -717,14 +719,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1836">
           <caret line="108" column="18" lean-forward="true" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
-          <folding />
+          <folding>
+            <marker date="1526061841070" expanded="true" signature="3188:3673" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/marcos cruz  CYOA.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="359" column="0" lean-forward="true" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="120" column="40" lean-forward="false" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
           <folding />
         </state>
       </provider>
