@@ -292,6 +292,7 @@ class Character(object):
         self.name(item)
         print("kick")
 
+
 class Room(object):
     def __init__(self, name, north, east, south, west, up, down, description, characters, items):
         self.name = name
@@ -358,7 +359,7 @@ locker_room2 = Room('locker room', 'cellar', None, 'storage_room', None, None, N
 cellar1 = Room('cellar1', None, None, 'locker_room1', None, None, None,
                'You are now in the cellar', None, 'key3')
 cellar2 = Room('cellar2', None, None, 'locker_room2', None, None, None,
-               'You are now in the second cellar', [Suarez], '')
+               'You are now in the second cellar', [Suarez], None)
 storage_room1 = Room('storage room1', 'locker_room1', None, None, None, None, None,
                      'You are now in the storage room', None, 'herbs')
 storage_room2 = Room('storage room2', 'cellar2', None, 'locker room2', None, None, None,
