@@ -328,44 +328,47 @@ jersey = Jersey('jersey', 'There is a blue jersey')
 suit = Suit('suit', 'There is a silky suit')
 
 # Characters
-Edgar = Character("good", True, "Edgar", 10, 3, None)
+Marcos = Character("good", True, "Marcos", 10, 3, None)
+Edgar = Character("bad", True, "Edgar", 10, 3, None)
 Messi = Character("good", True, "Messi", 10, 3, None)
-Pele = Character("good", True, "Pele", 10, 3, None)
+Pele = Character("bad", True, "Pele", 10, 3, None)
 Neymar = Character("good", True, "Neymar", 10, 3, None)
 Suarez = Character("good", True, "Suarez", 10, 3, None)
-Ronaldo = Character("good", True, "Ronaldo", 10, 3, None)
+Ronaldo = Character("bad", True, "Ronaldo", 10, 3, None)
 
 # Initialize Rooms
 field = Room('field', 'north_stadium', 'east_stadium', 'south_stadium', 'west_stadium', None, None,
-             'You are in the center of the field.', None, [axe])
+             'You are in the center of the field. Theres a axe here.', None, [axe])
 west_stadium = Room('West of Stadium', 'secret_room', 'field', None, None, None, None,
-                    'You are now west of stadium', None, [jersey])
+                    'You are now west of stadium. Theres a jersey here. Messi is in this room.', [Messi], [jersey])
 north_stadium = Room('north of stadium', None, None, 'field', None, 'announcers_room', None,
-                     'You are now north of stadium', None, [bacon])
+                     'You are now north of stadium. Theres some juicy bacon.', None, [bacon])
 south_stadium = Room('south of stadium', 'field', None, 'secret _room', None, None, None,
-                     'You are now south of stadium', None, [shinguard])
+                     'You are now south of stadium. Theres some pair of shinguards', None, [shinguard])
 east_stadium = Room('east of stadium', None, None, 'field', 'secret_room', None, None,
-                    'You are now east of stadium', None, [screw])
+                    'You are now east of stadium. There is a screw here.', None, [screw])
 announcers_room = Room('announcers room', None, None, 'field', None, 'north_stadium', None,
-                       'You are now in the announcers room', [Edgar], [hammer])
+                       'You are now in the announcers room. Theres a heavy hammer here. Edgar the ogor is here. Attack',
+                       [Edgar], [hammer])
 secret_room1 = Room('secret room', 'south_stadium', None, None, None, None, None,
-                    'You are now in the secret room', [Pele], [salad])
+                    'You are now in the secret room. Theres green salad here. Pele is here. Attack', [Pele], [salad])
 secret_room2 = Room('secret room', 'east_stadium', None, None, None, None, None,
-                    'You are in the second secret room', [Neymar], [medkit])
+                    'You are in the second secret room. Theres a medkit in here. Neymar is here get the medkit from him.
+                    don't engaged', [Neymar], [medkit])
 secret_room3 = Room('secret room', None, None, 'west_stadium', None, None, None,
-                    'You are now in the third secret room', [Ronaldo], [suit])
+                    'You are now in the third secret room. There is a suit in here. Ronaldo is in here take the suit from him', [Ronaldo], [suit])
 locker_room1 = Room('locker room', 'storage_room', None, None, None, None, None,
-                    'You are now in the locker rooms', None, [key1])
+                    'You are now in the locker rooms.Theres key1 in here', None, [key1])
 locker_room2 = Room('locker room', 'cellar', None, 'storage_room', None, None, None,
-                    'You are now in the second locker room', None, [key2])
+                    'You are now in the second locker room. Theres key2 in here', None, [key2])
 cellar1 = Room('cellar1', None, None, 'locker_room1', None, None, None,
-               'You are now in the cellar', None, [key3])
+               'You are now in the cellar. Theres key3 in here', None, [key3])
 cellar2 = Room('cellar2', None, None, 'locker_room2', None, None, None,
-               'You are now in the second cellar', [Suarez], None)
+               'You are now in the second cellar. Suarez is in here. Attack', [Suarez], None)
 storage_room1 = Room('storage room1', 'locker_room1', None, None, None, None, None,
-                     'You are now in the storage room', None, [herbs])
+                     'You are now in the storage room. Theres some herbs in here take them', None, [herbs])
 storage_room2 = Room('storage room2', 'cellar2', None, 'locker room2', None, None, None,
-                     'You are now in the send storage room', None, [Body_armor])
+                     'You are now in the send storage room. Theres body armor in here take it', None, [Body_armor])
 current_node = field
 directions = ['north', 'south', 'east', 'west']
 short_directions = ['n', 's', 'e', 'w']
@@ -389,13 +392,13 @@ while True:
     elif 'take' in command:
         taken_name = command[5:]
         found = False
-        for item in Messi.location.items:
+        for item in Marcos.location.items:
             if taken_name == Messi.location.items:
-                Messi.take(item)
+                Marcos.take(item)
                 found = item
 
         else:
-            Messi.location.items.remove(found)
+            Marcos.location.items.remove(found)
     #
     # elif 'drop' in command:
     #     taken_name = command[5:]
