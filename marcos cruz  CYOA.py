@@ -291,9 +291,11 @@ class Character(object):
         self.name(item)
         print("kick")
 
+    def move(self, direction):
+        self.location = globals()[getattr(self.location, direction)]
 
 class Room(object):
-    def __init__(self, name, north, east, south, west, up, down, description, characters, items):
+    def __init__(self, name, north, east, south, west, up, down, description, characters, items=None):
         self.name = name
         self.north = north
         self.east = east
@@ -304,10 +306,9 @@ class Room(object):
         self.description = description
         self.characters = characters
         self.items = items
+        if items is None:
+            items = []
 
-    def move(self, direction):
-        global current_node 
-        current_node = globals()[getattr(self, direction)]
 # Items
 
 
@@ -369,14 +370,14 @@ storage_room1 = Room('storage room1', 'locker_room1', None, None, None, None, No
                      'You are now in the storage room. There\'s some herbs in here take them', None, [herbs])
 storage_room2 = Room('storage room2', 'cellar2', None, 'locker room2', None, None, None,
                      'You are now in the send storage room. There\'s body armor in here take it', None, [Body_armor])
-current_node = field
+Marcos.location = field
 directions = ['north', 'south', 'east', 'west']
 short_directions = ['n', 's', 'e', 'w']
 
 while True:
     #   Room Descriptions
-    print(current_node.name)
-    print(current_node.description)
+    print(Marcos.location.name)
+    print(Marcos.location.description)
     command = input('>_') .lower()
     if command == 'quit':
         quit(0)
@@ -385,25 +386,27 @@ while True:
         command = directions[pos]
     if command in directions:
         try:
-            current_node.move(command)
+            Marcos.move(command)
         except KeyError:
             print("You cannot go this way.")
 
     elif 'take' in command:
-        taken_name = command[5:]
+        take_name = command[5:]
         found = False
         for item in Marcos.location.items:
-            if taken_name == Messi.location.items:
-                Marcos.take(item)
-                found = item
-
+            if take_name == item.name.lower():
+                if Marcos.take(item):
+                    found = item
+        if found is False:
+            print("You didn't find the item.")
         else:
             Marcos.location.items.remove(found)
     #
     # elif 'drop' in command:
     #     taken_name = command[5:]
     #     found = False
-    #     for item in Messi.location.items:
+    #      for item in Messi.location.items:
+    #
     else:
         print('Command not Recognized')
     print()
