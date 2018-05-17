@@ -285,7 +285,6 @@ class Character(object):
 
     def take(self, item):
         self.Inventory.append(item)
-        print("pick up")
 
     def kick(self, item):
         self.name(item)
@@ -395,12 +394,14 @@ while True:
         found = False
         for item in Marcos.location.items:
             if take_name == item.name.lower():
-                if Marcos.take(item):
-                    found = item
+                Marcos.take(item)
+                found = True
+                Marcos.location.items.remove(item)
+                print("Taken.")
         if found is False:
             print("You didn't find the item.")
         else:
-            Marcos.location.items.remove(found)
+            pass
     #
     # elif 'drop' in command:
     #     taken_name = command[5:]
