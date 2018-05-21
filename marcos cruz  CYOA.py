@@ -293,6 +293,7 @@ class Character(object):
     def move(self, direction):
         self.location = globals()[getattr(self.location, direction)]
 
+
 class Room(object):
     def __init__(self, name, north, east, south, west, up, down, description, characters, items=None):
         self.name = name
