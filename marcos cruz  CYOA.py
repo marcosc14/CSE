@@ -268,6 +268,9 @@ class Character(object):
             self.alive = False
             print("%s has died." % self.name)
 
+    def use(self):
+        print("You used a %s." % self.name)
+
     def attack(self, enemy):
         print("attack")
         if self.alive:
@@ -279,8 +282,8 @@ class Character(object):
     def look(self):
         print(self.location.name)
 
-    def drop(self, item):
-        self.Inventory.remove(item)
+    def drop(self, object):
+        self.Inventory.remove(object)
         print("dropped")
 
     def take(self, item):
@@ -292,6 +295,7 @@ class Character(object):
 
     def move(self, direction):
         self.location = globals()[getattr(self.location, direction)]
+
 
 class Room(object):
     def __init__(self, name, north, east, south, west, up, down, description, characters, items=None):
@@ -370,8 +374,8 @@ storage_room1 = Room('storage room1', 'locker_room1', None, None, None, None, No
 storage_room2 = Room('storage room2', 'cellar2', None, 'locker room2', None, None, None,
                      'You are now in the send storage room. There\'s body armor in here take it', None, [Body_armor])
 Marcos.location = field
-directions = ['north', 'south', 'east', 'west']
-short_directions = ['n', 's', 'e', 'w']
+directions = ['north', 'south', 'east', 'west', 'up', 'down']
+short_directions = ['n', 's', 'e', 'w', 'u', 'd']
 
 while True:
     #   Room Descriptions
@@ -402,12 +406,38 @@ while True:
             print("You didn't find the item.")
         else:
             pass
-    #
-    # elif 'drop' in command:
-    #     taken_name = command[5:]
-    #     found = False
-    #      for item in Messi.location.items:
-    #
+
+    elif 'drop' in command:
+        drop_name = command[5:]
+        drop = False
+        for item in Marcos.Inventory:
+            if drop_name == item.name.lower():
+                Marcos.drop(item)
+                drop = True
+                Marcos.location.items.append(item)
+        if drop is False:
+            print("You didn't find the item.")
+        else:
+            pass
+
+    elif 'inventory' in command:
+        for items in Marcos.Inventory:
+            print(items.name)
+
+    # elif "use" in command:
+    #     use_name = command[4:]
+    #     use = False
+    #     for object in Marcos.Inventory:
+    #         if use_name == object.name.lower():
+    #             Marcos.use(object)
+    #             use = True
+
+    elif 'get more health' in command:
+        if medkit and herbs in Marcos.Inventory:
+            print("You used the medkit and herbs and...")
+            print(Marcos.health+3)
+
+        else:
+            print("You don't have the items")
     else:
         print('Command not Recognized')
-    print()
