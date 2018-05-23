@@ -250,10 +250,10 @@ class Suit(Clothing):
 
 
 class Character(object):
-    def __init__(self, status_effect, alive, name, health, dmg, location):
+    def __init__(self, status_effect, name, health, dmg, location):
         self.Inventory = []
         self.Status_Effect = status_effect
-        self.alive = alive
+        self.alive = True
         self.name = name
         self.health = health
         self.damage = dmg
@@ -261,12 +261,15 @@ class Character(object):
 
     def take_damage(self, amt):
         if self.health <= 0:
-            print("%s is dead")
+            print("%s is dead" % self.name)
             return
         self.health -= amt
         if self.health <= 0:
             self.alive = False
             print("%s has died." % self.name)
+
+        if Marcos.alive is False:
+            quit(0)
 
     def use(self):
         print("You used a %s." % self.name)
@@ -274,8 +277,13 @@ class Character(object):
     def attack(self, enemy):
         print("attack")
         if self.alive:
-            print("You attacked %s" % self.name)
+            print("You attacked %s" % enemy.name)
             enemy.take_damage(self.damage)
+            print("%s's health is %d." % (enemy.name, enemy.health))
+            print("%s attacked you." % enemy.name)
+            Marcos.take_damage(self.damage)
+            print("%s's health is %d." % (Marcos.name, Marcos.health))
+
         else:
             print("%s is dead and cannot attack." % self.name)
 
@@ -331,13 +339,13 @@ jersey = Jersey('jersey', 'There is a blue jersey')
 suit = Suit('suit', 'There is a silky suit')
 
 # Characters
-Marcos = Character("good", True, "Marcos", 10, 3, None)
-Edgar = Character("bad", True, "Edgar", 10, 3, None)
-Messi = Character("good", True, "Messi", 10, 3, None)
-Pele = Character("bad", True, "Pele", 10, 3, None)
-Neymar = Character("good", True, "Neymar", 10, 3, None)
-Suarez = Character("good", True, "Suarez", 10, 3, None)
-Ronaldo = Character("bad", True, "Ronaldo", 10, 3, None)
+Marcos = Character("good", "Marcos", 100, 5, None)
+Edgar = Character("bad", "Edgar", 10, 3, None)
+Messi = Character("good", "Messi", 10, 3, None)
+Pele = Character("bad", "Pele", 10, 3, None)
+Neymar = Character("good", "Neymar", 10, 3, None)
+Suarez = Character("good", "Suarez", 10, 3, None)
+Ronaldo = Character("bad", "Ronaldo", 10, 3, None)
 
 # Initialize Rooms
 field = Room('field', 'north_stadium', 'east_stadium', 'south_stadium', 'west_stadium', None, None,
@@ -419,6 +427,19 @@ while True:
             print("You didn't find the item.")
         else:
             pass
+    elif Marcos.location == announcers_room:
+        if 'attack with axe' in command:
+            axe_name = command[12:]
+            found = False
+            for item in Marcos.Inventory:
+                if axe_name == item.name.lower():
+                    Marcos.attack(Edgar)
+                    Marcos.attack(Edgar)
+                    Marcos.attack(Edgar)
+                    Marcos.attack(Edgar)
+                    found = True
+            if axe not in Marcos.Inventory:
+                print("You don't have the axe.")
 
     elif 'inventory' in command:
         for items in Marcos.Inventory:
